@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Pensopay
+namespace Pensopay.Util
 {
     public abstract class PensopayRestClient
     {
@@ -38,7 +38,7 @@ namespace Pensopay
 
         protected async Task<T> CallEndpointAsync<T>(string endpointName, Action<RestRequest> preRequest = null) where T : new()
         {
-           RestRequest request = CreateRequest(endpointName);
+            RestRequest request = CreateRequest(endpointName);
 
             preRequest?.Invoke(request);
 
@@ -60,7 +60,7 @@ namespace Pensopay
 
 
             return response.Data;
-        }   
+        }
 
     }
 }
