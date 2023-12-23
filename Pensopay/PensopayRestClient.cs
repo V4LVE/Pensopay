@@ -1,4 +1,5 @@
-﻿using RestSharp;
+﻿using Pensopay.Models;
+using RestSharp;
 using RestSharp.Authenticators;
 using System;
 using System.Collections.Generic;
@@ -27,6 +28,39 @@ namespace Pensopay
 
             Client = new RestClient(options: clientOptions);
         }
+
+        protected RestRequest CreateRequest(string resource)
+        {
+            RestRequest request = new(resource);
+            request.AddHeader("accept", "application/json");
+            return request;
+        }
+
+        protected async Task<T> CallEndpointAsync<T>(string endpointName, Action<RestRequest> preRequest = null) where T : new()
+        {
+           RestRequest request = CreateRequest(endpointName);
+
+            preRequest?.Invoke(request);
+
+            RestResponse<T> response = await Client.ExecuteAsync<T>(request);
+
+            // Handle errors and throw exceptions if needed 
+            if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
+            {
+                throw new DirectoryNotFoundException("The Called endpoint was not found");
+            }
+            if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+            {
+                throw new UnauthorizedAccessException("You are not authorized to access this endpoint");
+            }
+            if (response.ErrorException != null)
+            {
+                throw response.ErrorException;
+            }
+
+
+            return response.Data;
+        }   
 
     }
 }
