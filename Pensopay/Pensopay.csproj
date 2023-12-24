@@ -4,6 +4,15 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Description>A nuget for the Pensopay API.</Description>
+    <PackageProjectUrl>https://github.com/V4LVE/Pensopay</PackageProjectUrl>
+    <Copyright>MIT License</Copyright>
+    <PackageReadmeFile></PackageReadmeFile>
+    <RepositoryUrl>https://github.com/V4LVE/Pensopay</RepositoryUrl>
+    <RepositoryType>Git</RepositoryType>
+    <PackageTags>Payment, API, Pensopay, Quickpay</PackageTags>
+    <NeutralLanguage>en</NeutralLanguage>
   </PropertyGroup>
 
   <ItemGroup>

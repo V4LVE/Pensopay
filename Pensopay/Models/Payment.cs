@@ -17,7 +17,7 @@ namespace Pensopay.Models
         public double refunded { get; set; }
         public string currency { get; set; }
         public string state { get; set; }
-        public string facilitator { get; set; }
+        public string facilitator { get; set; } = "creditcard";
         public string reference { get; set; }
         public bool testmode { get; set; }
         public bool autocapture { get; set; }
