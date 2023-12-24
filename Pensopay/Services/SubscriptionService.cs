@@ -79,7 +79,47 @@ namespace Pensopay.Services
         #endregion
 
         #region Mandates
+        /// <summary>
+        /// Create a new mandate for a subscription towards the API
+        /// </summary>
+        /// <param name="requestParams"></param>
+        /// <returns>The created mandate</returns>
+        public async Task<Mandate> CreateMandate(CreateMandateRequestParams requestParams)
+        {
+            Action<RestRequest> preRequest = (request) =>
+            {
+                request.Method = Method.Post;
+                request.AddJsonBody(requestParams);
+            };
 
+            return CallEndpointAsync<Mandate>($"subscriptions/{requestParams.subscription}/mandates", preRequest).Result;
+        }
+
+        public async Task<Mandate> RevokeMandate(int subscriptionId, int mandateId)
+        {
+            return await CallEndpointAsync<Mandate>($"subscriptions/{subscriptionId}/mandates/{mandateId}/revoke", (request) => request.Method = Method.Post);
+        }
+
+        /// <summary>
+        /// Retrieve a specific mandate from the API
+        /// </summary>
+        /// <param name="subscriptionId"></param>
+        /// <param name="mandateid"></param>
+        /// <returns>the requested mandate</returns>
+        public async Task<Mandate> GetMandate(int subscriptionId, int mandateid)
+        {
+            return await CallEndpointAsync<Mandate>($"subscriptions/{subscriptionId}/mandates/{mandateid}");
+        }
+
+        /// <summary>
+        /// retrieve all mandates for a subscriptions from the API
+        /// </summary>
+        /// <param name="subscriptionId"></param>
+        /// <returns>A list of mandates</returns>
+        public async Task<List<Mandate>> GetAllMandates(int subscriptionId)
+        {
+            return await CallEndpointAsync<List<Mandate>>($"subscriptions/{subscriptionId}/mandates");
+        }
         #endregion
     }
 }
