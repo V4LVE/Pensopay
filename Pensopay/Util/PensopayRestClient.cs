@@ -12,6 +12,7 @@ namespace Pensopay.Util
     public abstract class PensopayRestClient
     {
         private const string _apiUrl = "https://api.pensopay.com/v1/";
+        private readonly string _bearerToken;
 
         protected RestClient Client { get; set; }
 
@@ -23,9 +24,9 @@ namespace Pensopay.Util
             RestClientOptions clientOptions = new(_apiUrl)
             {
                 UserAgent = "Pensopay .NET SDK",
-                FollowRedirects = true,
+                FollowRedirects = true
             };
-
+            _bearerToken = bearerToken;
             Client = new RestClient(options: clientOptions);
         }
 
@@ -33,6 +34,8 @@ namespace Pensopay.Util
         {
             RestRequest request = new(resource);
             request.AddHeader("accept", "application/json");
+            request.AddHeader("accept-version", "v10");
+            request.AddHeader("authorization", $"Bearer {_bearerToken}");
             return request;
         }
 
