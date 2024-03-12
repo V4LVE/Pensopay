@@ -1,4 +1,5 @@
 ﻿using Pensopay.Models;
+using Pensopay.Parameters;
 using Pensopay.RequestParameters;
 using Pensopay.Util;
 using RestSharp;
@@ -18,9 +19,15 @@ namespace Pensopay.Services
         /// Retrieve all payments from the API
         /// </summary>
         /// <returns>a list of payments</returns>
-        public async Task<List<Payment>> GetPaymentsAsync()
+        public async Task<Payments> GetPaymentsAsync(PageParameters? pageParameters = null)
         {
-            return CallEndpointAsync<List<Payment>>("payments").Result;
+            Action<RestRequest> preRequest = (request) =>
+            {
+                AddPagingParameters(pageParameters, request);
+            };
+
+
+            return CallEndpointAsync<Payments>("payments").Result;
         }
 
         /// <summary>

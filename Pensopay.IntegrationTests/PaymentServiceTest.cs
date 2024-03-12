@@ -27,11 +27,10 @@ namespace Pensopay.IntegrationTests
             var payments = service.GetPaymentsAsync();
             var result = payments.Result;
 
-            Assert.True(result != null);
+            Assert.True(result.Data != null);
         }
 
-        [Fact]
-        public void CreatePayment()
+        /*public void CreatePayment()
         {
             RestClientOptions clientOptions = new("https://api.pensopay.com/v1/")
             {
@@ -46,6 +45,6 @@ namespace Pensopay.IntegrationTests
             preRequest?.Invoke(request);
 
             RestResponse<T> response = await Client.ExecuteAsync<T>(request);
-        }
+        }*/
     }
 }
