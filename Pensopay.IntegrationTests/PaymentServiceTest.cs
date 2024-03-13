@@ -1,6 +1,8 @@
 
 using Pensopay.IntegrationTests.Properties;
 using Pensopay.IntegrationTests.Util;
+using Pensopay.Parameters;
+using Pensopay.RequestParameters;
 using Pensopay.Services;
 using RestSharp;
 using System.Reflection;
@@ -13,38 +15,66 @@ namespace Pensopay.IntegrationTests
         [Fact]
         public void GetSinglePayment()
         {
+            //Arrange
             PaymentService service = new(PensopayConfig.bearerToken);
             var payment =  service.GetPaymentAsync(7223370);
+
+            //Act
             var result = payment.Result;
 
+            //Assert
             Assert.True(result != null);
         }
 
         [Fact]
         public void GetPayments()
         {
+            //Arrange
             PaymentService service = new(PensopayConfig.bearerToken);
             var payments = service.GetPaymentsAsync();
+
+            //Act
             var result = payments.Result;
 
+            //Assert
             Assert.True(result.Data != null);
         }
 
-        /*public void CreatePayment()
+        [Fact]
+        public void GetPaymentsWithPaging()
         {
-            RestClientOptions clientOptions = new("https://api.pensopay.com/v1/")
+            //Arrange
+            PaymentService service = new(PensopayConfig.bearerToken);
+            var pageParams = new PageParameters()
             {
-                UserAgent = "Pensopay .NET SDK",
-                FollowRedirects = true
+                current_page = 1,
+                per_page = 10
             };
-             string _bearerToken = PensopayConfig.bearerToken;
-            RestClient client = new RestClient(options: clientOptions);
 
-            RestRequest request = CreateRequest(endpointName);
+            var payments = service.GetPaymentsAsync(pageParams);
 
-            preRequest?.Invoke(request);
+            //Act
+            var result = payments.Result;
 
-            RestResponse<T> response = await Client.ExecuteAsync<T>(request);
-        }*/
+            //Assert
+            Assert.True(result.Data.Count == pageParams.per_page);
+        }
+
+        [Fact]
+        public void CreatePayment()
+        {
+            //Arrange
+            PaymentService service = new(PensopayConfig.bearerToken);
+            string randomOrderid = OrderIDGenerator.GenerateRandomId();
+
+            var reqParams = new CreatePaymentRequestParams("DKK", randomOrderid, 1000);
+            var task = service.CreatePaymentAsync(reqParams);
+
+            //Act
+            var result = task.Result;
+
+            //Assert
+            Assert.True(result != null);
+        }
     }
 }

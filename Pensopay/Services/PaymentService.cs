@@ -27,7 +27,7 @@ namespace Pensopay.Services
             };
 
 
-            return CallEndpointAsync<Payments>("payments").Result;
+            return CallEndpointAsync<Payments>("payments", preRequest).Result;
         }
 
         /// <summary>

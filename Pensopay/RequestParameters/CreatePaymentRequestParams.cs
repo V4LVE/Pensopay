@@ -12,11 +12,17 @@ namespace Pensopay.RequestParameters
         public string order_id { get; set; }
         public string currency { get; set; }
         public double amount { get; set; }
-        public Order order { get; set; }
+        public string facilitator { get; set; } = "creditcard";
+        public object? order { get; set; } = new();
         public ShippingObj shipping { get; set; }
         public Address billing_address { get; set; }
         public Address shipping_address { get; set; }
         public Variables variables { get; set; }
+
+        public CreatePaymentRequestParams()
+        {
+            
+        }
 
         public CreatePaymentRequestParams(string currency, string order_id, double amount)
         {
