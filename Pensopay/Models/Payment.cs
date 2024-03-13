@@ -25,7 +25,7 @@ namespace Pensopay.Models
         public string callback_url { get; set; }
         public string success_url { get; set; }
         public string cancel_url { get; set; }
-        public object? order { get; set; }
+        public Order? order { get; set; }
         public ShippingObj shipping { get; set; }
         public Address billing_address { get; set; }
         public Address shipping_address { get; set; }
