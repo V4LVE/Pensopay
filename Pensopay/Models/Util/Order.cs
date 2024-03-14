@@ -8,6 +8,9 @@ namespace Pensopay.Models.Util
 {
     public class Order
     {
-        public List<Item> Basket { get; set; }
+        public Address billing_address { get; set; } = new();
+        public Address shipping_address { get; set; } = new();
+
+        public List<Item> Basket { get; set; } = new() {new Item() };
     }
 }

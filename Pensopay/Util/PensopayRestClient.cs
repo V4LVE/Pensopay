@@ -1,9 +1,11 @@
 ﻿using Pensopay.Models;
+using Pensopay.Parameters;
 using RestSharp;
 using RestSharp.Authenticators;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,7 +13,8 @@ namespace Pensopay.Util
 {
     public abstract class PensopayRestClient
     {
-        private const string _apiUrl = "https://api.pensopay.com/v1/";
+        private const string _apiUrl = "https://api.pensopay.com/v2/";
+        private readonly string _bearerToken;
 
         protected RestClient Client { get; set; }
 
@@ -23,9 +26,9 @@ namespace Pensopay.Util
             RestClientOptions clientOptions = new(_apiUrl)
             {
                 UserAgent = "Pensopay .NET SDK",
-                FollowRedirects = true,
+                FollowRedirects = true
             };
-
+            _bearerToken = bearerToken;
             Client = new RestClient(options: clientOptions);
         }
 
@@ -33,7 +36,31 @@ namespace Pensopay.Util
         {
             RestRequest request = new(resource);
             request.AddHeader("accept", "application/json");
+            request.AddHeader("accept-version", "v10");
+            request.AddHeader("authorization", $"Bearer {_bearerToken}");
             return request;
+        }
+
+        protected void AddPagingParameters(Nullable<PageParameters> pageParameters, RestRequest request)
+        {
+            if (pageParameters == null)
+                return;
+            request.AddParameter("current_page", pageParameters.Value.current_page);
+            request.AddParameter("last_page", pageParameters.Value.last_page);
+            request.AddParameter ("per_page", pageParameters.Value.per_page);
+            request.AddParameter ("total", pageParameters.Value.total);
+        }
+
+        protected void AddSortingParameters(Nullable<SortingParameters> sortingParameters, RestRequest request)
+        {
+            if (sortingParameters == null)
+                return;
+
+            if (sortingParameters.Value.SortBy == String.Empty)
+                throw new ArgumentException("sort_by cannot be empty");
+
+            request.AddParameter("sort_by", sortingParameters.Value.SortBy);
+            request.AddParameter("sort_dir", sortingParameters.Value.SortDirection.ToString());
         }
 
         protected async Task<T> CallEndpointAsync<T>(string endpointName, Action<RestRequest> preRequest = null) where T : new()
