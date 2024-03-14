@@ -5,18 +5,23 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Description>A nuget for the Pensopay API.</Description>
+    <Description>A nuget for the Pensopay API. Allows to integrate using this simple build client</Description>
     <PackageProjectUrl>https://github.com/V4LVE/Pensopay</PackageProjectUrl>
     <Copyright>MIT License</Copyright>
-    <PackageReadmeFile></PackageReadmeFile>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/V4LVE/Pensopay</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
     <PackageTags>Payment, API, Pensopay, Quickpay</PackageTags>
     <NeutralLanguage>en</NeutralLanguage>
-    <Version>0.5.0</Version>
-    <Authors>V4LVE</Authors>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Title>Pensopay Client</Title>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="RestSharp" Version="110.2.0" />

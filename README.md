@@ -2,13 +2,13 @@
 
 [![Build Status](https://app.travis-ci.com/V4LVE/Pensopay.svg?token=Lqb5C91ckQA2q6UpBZyQ&branch=master)](https://app.travis-ci.com/V4LVE/Pensopay)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![Package](https://img.shields.io/badge/Package-Nuget-red)](https://opensource.org/licenses/MIT)
+[![Package](https://img.shields.io/badge/Package-Nuget-red)](https://www.nuget.org/packages/Pensopay/)
 
 Pensopay Payments is the unoffical .net nuget package for the [Pensopay API](https://docs.pensopay.com/v2.0/reference/getting-started). It is a wrapper for the Pensopay API, and makes it easy to integrate Pensopay into your .net project.
 
 ## Installation
 
-You can either download our source directly from the GitHub repo, or install the nuget package which can be found on [nuget .org](https://www.google.dk/).
+You can either download our source directly from the GitHub repo, or install the nuget package which can be found on [nuget .org](https://www.nuget.org/packages/Pensopay/).
 
 ## Usage
 
