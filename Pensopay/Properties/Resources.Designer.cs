@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Pensopay.IntegrationTests.Properties {
+namespace Pensopay.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Pensopay.IntegrationTests.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Pensopay.IntegrationTests.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Pensopay.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -57,15 +57,6 @@ namespace Pensopay.IntegrationTests.Properties {
             }
             set {
                 resourceCulture = value;
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Nice try Hacker man ;) .
-        /// </summary>
-        internal static string PENSOPAY_BTOKEN {
-            get {
-                return ResourceManager.GetString("PENSOPAY_BTOKEN", resourceCulture);
             }
         }
     }
