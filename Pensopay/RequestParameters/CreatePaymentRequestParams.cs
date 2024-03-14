@@ -13,6 +13,7 @@ namespace Pensopay.RequestParameters
         public string currency { get; set; }
         public double amount { get; set; }
         public string facilitator { get; set; } = "creditcard";
+        public bool testmode { get; set; }
         public Order? order { get; set; } = new();
         public ShippingObj shipping { get; set; }
         public Address billing_address { get; set; }
