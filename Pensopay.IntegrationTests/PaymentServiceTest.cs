@@ -18,7 +18,7 @@ namespace Pensopay.IntegrationTests
         {
             //Arrange
             PaymentService service = new(PensopayConfig.bearerToken);
-            var payment =  service.GetPaymentAsync(7223370);
+            var payment =  service.GetPaymentAsync(11694090);
 
             //Act
             var result = payment.Result;
@@ -111,6 +111,47 @@ namespace Pensopay.IntegrationTests
             //Assert
             Assert.True(result != null);
 
+        }
+
+        [Fact]
+        public void CapturePayment()
+        {
+            //Arrange
+            PaymentService service = new(PensopayConfig.bearerToken);
+
+            var task = service.CapturePaymentAsync(11694090, 100);
+
+            //Act
+            var result = task.Result;
+
+            //Assert
+            Assert.True(result != null);
+        }
+
+        [Fact]
+        public void CancelPayent()
+        {
+            //Arrange
+            PaymentService service = new(PensopayConfig.bearerToken);
+            var task = service.CancelPaymentAsync(11694090);
+            //Act
+            var result = task.Result;
+            //Assert
+            Assert.True(result != null);
+        }
+
+        [Fact]
+        public void RefundPayent()
+        {
+             //Arrange
+            PaymentService service = new(PensopayConfig.bearerToken);
+            var task = service.RefundPaymentAsync(11694090, 100);
+
+            //Act
+            var result = task.Result;
+
+            //Assert
+            Assert.True(result != null);
         }
     }
 }
