@@ -14,6 +14,10 @@ namespace Pensopay.RequestParameters
         public double amount { get; set; }
         public string facilitator { get; set; } = "creditcard";
         public bool testmode { get; set; }
+        public bool autocapture { get; set; }
+        public string callback_url { get; set; }
+        public string success_url { get; set; }
+        public string cancel_url { get; set; }
         public Order? order { get; set; } = new();
         public ShippingObj shipping { get; set; }
         public Address billing_address { get; set; }
