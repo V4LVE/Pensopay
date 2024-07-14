@@ -22,7 +22,8 @@ Currently there is support for the following services:
 
 - [x] PaymentService
 - [x] AccountService
-- [x] SubscriptionServce (Not yet implemented, but is planned)
+- [x] SettlementService 
+- [ ] SubscriptionServce (Not yet implemented, but is planned)
 
 
 Each service has a set of methods, which corresponds to the endpoints in the Pensopay API. The methods are async, and returns a response object, which contains the response from the Pensopay API.
@@ -40,7 +41,7 @@ You can also take matters into your own hand and implement the missing parts you
 To do this you can create your own service class and let it extend the PensoPayRestClient, which will ensure that the correct header values are added to the requests.
 
 ## Examples
- Under construction.
+ For examples on how to use the package, please see the [examples](https://github.com/V4LVE/Pensopay/tree/master/Pensopay.Examples) folder in the repo.
 
 ## Isues
 if you find any issues, please report them in the [issues](https://github.com/V4LVE/Pensopay/issues) section of the repo.
