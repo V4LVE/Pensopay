@@ -15,6 +15,9 @@ namespace Pensopay.RequestParameters
         public string order_id { get; set; }
         public Order order { get; set; } = new();
         public bool testmode { get; set; } = false;
+        public string success_url { get; set; } = "https://www.success.com/";
+        public string cancel_url { get; set; } = "https://www.cancel.com/";
+        public string callback_url { get; set; } = "https://www.callback.com/";
 
         public CreatePaymentRequestParams()
         {

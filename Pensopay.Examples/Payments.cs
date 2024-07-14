@@ -17,28 +17,6 @@ namespace Pensopay.Examples
         private static readonly PaymentService _paymentService = new PaymentService("<<BearerToken>>");
 
         /// <summary>
-        /// Create a payment
-        /// </summary>
-        /// <returns></returns>
-        public static async Task CreateSimplePayment()
-        {
-            // To make everything esier and not have long parameter lists, we will use the CreatePaymentRequestParams class to create a payment.
-            CreatePaymentRequestParams param = new()
-            {
-                currency = "DKK",
-                order_id = "123456",
-                amount = 100,
-                testmode = false
-            };
-
-            //We can now create the payment by calling the CreatePayment method on the paymentService instance. The request returns the created payment.
-            Payment payment = await _paymentService.CreatePaymentAsync(param);
-
-            //We can now use the payment object to get the payment id, which we can use to capture, refund or cancel the payment. We can also use the payment object to get the payment url.
-            Console.WriteLine(payment.link);
-        }
-
-        /// <summary>
         /// Create a payment with a basket
         /// </summary>
         /// <returns></returns>
@@ -62,7 +40,8 @@ namespace Pensopay.Examples
                 currency = "DKK",
                 order_id = "12345678",
                 amount = 100,
-                order = order
+                order = order,
+                testmode = true
             };
 
             Payment payment = await _paymentService.CreatePaymentAsync(reqParams);
