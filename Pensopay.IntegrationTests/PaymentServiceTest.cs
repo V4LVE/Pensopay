@@ -48,7 +48,7 @@ namespace Pensopay.IntegrationTests
             PaymentService service = new(PensopayConfig.bearerToken);
             var pageParams = new PageParameters()
             {
-                current_page = 1,
+                page = 1,
                 per_page = 10
             };
 

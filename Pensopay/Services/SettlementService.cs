@@ -21,6 +21,7 @@ namespace Pensopay.Services
         /// <returns></returns>
         public async Task<Settlements> GetSettlementsAsync(PageParameters? pageParameters = null)
         {
+
             Action<RestRequest> preRequest = (request) =>
             {
                 AddPagingParameters(pageParameters, request);
@@ -35,7 +36,7 @@ namespace Pensopay.Services
         /// </summary>
         /// <param name="settlementId"></param>
         /// <returns></returns>
-        public async Task<Settlement> GeSettlementAsync(int settlementId)
+        public async Task<Settlement> GeSettlementAsync(string settlementId)
         {
             return CallEndpointAsync<Settlement>($"settlements/{settlementId}").Result;
         }
