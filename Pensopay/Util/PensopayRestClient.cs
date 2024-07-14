@@ -45,8 +45,7 @@ namespace Pensopay.Util
         {
             if (pageParameters == null)
                 return;
-            request.AddParameter("current_page", pageParameters.Value.current_page);
-            request.AddParameter("last_page", pageParameters.Value.last_page);
+            request.AddParameter("page", pageParameters.Value.page);
             request.AddParameter ("per_page", pageParameters.Value.per_page);
             request.AddParameter ("total", pageParameters.Value.total);
         }
