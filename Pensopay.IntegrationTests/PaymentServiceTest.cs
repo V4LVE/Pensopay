@@ -18,7 +18,7 @@ namespace Pensopay.IntegrationTests
         {
             //Arrange
             PaymentService service = new(PensopayConfig.bearerToken);
-            var payment =  service.GetPaymentAsync(11719896);
+            var payment =  service.GetPaymentAsync(14572581);
 
             //Act
             var result = payment.Result;
@@ -38,7 +38,7 @@ namespace Pensopay.IntegrationTests
             var result = payments.Result;
 
             //Assert
-            Assert.True(result.Data != null);
+            Assert.True(result.data != null);
         }
 
         [Fact]
@@ -58,31 +58,11 @@ namespace Pensopay.IntegrationTests
             var result = payments.Result;
 
             //Assert
-            Assert.True(result.Data.Count == pageParams.per_page);
+            Assert.True(result.data.Count == pageParams.per_page);
         }
 
         [Fact]
         public void CreatePayment()
-        {
-            //Arrange
-            PaymentService service = new(PensopayConfig.bearerToken);
-            string randomOrderid = OrderIDGenerator.GenerateRandomId();
-
-            var reqParams = new CreatePaymentRequestParams("DKK", randomOrderid, 1000)
-            {
-                testmode = true
-            };
-            var task = service.CreatePaymentAsync(reqParams);
-
-            //Act
-            var result = task.Result;
-
-            //Assert
-            Assert.True(result != null);
-        }
-
-        [Fact]
-        public void CreatePaymentWithBasket()
         {
             //Arrange
             PaymentService service = new(PensopayConfig.bearerToken);
@@ -102,7 +82,7 @@ namespace Pensopay.IntegrationTests
             {
                 currency = "DKK",
                 order_id = randomOrderId,
-                amount = 100,
+                amount = 1000,
                 order = order
             };
 
@@ -136,7 +116,7 @@ namespace Pensopay.IntegrationTests
         {
             //Arrange
             PaymentService service = new(PensopayConfig.bearerToken);
-            var task = service.CancelPaymentAsync(11719896);
+            var task = service.CancelPaymentAsync(14572581);
             //Act
             var result = task.Result;
             //Assert

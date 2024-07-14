@@ -8,6 +8,7 @@ namespace Pensopay.Models.Util
 {
     public class Variables
     {
-        public string key { get; set; }
+        public string _extAuthorizationAttemptID { get; set; }
+        public string _extPaymentID { get; set; }
     }
 }

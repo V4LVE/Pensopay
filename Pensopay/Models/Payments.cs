@@ -9,7 +9,7 @@ namespace Pensopay.Models
 {
     public class Payments
     {
-        public List<Payment> Data { get; set; }
-        public PageParameters Meta { get; set; }
+        public List<Payment> data { get; set; }
+        public PageParameters meta { get; set; }
     }
 }

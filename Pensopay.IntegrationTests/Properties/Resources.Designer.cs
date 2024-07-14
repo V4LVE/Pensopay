@@ -61,7 +61,7 @@ namespace Pensopay.IntegrationTests.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Nice try Hacker man ;) .
+        ///   Looks up a localized string similar to d8e2d1bf2e6f6f4a9a941b0a6cba496ee9fe6670956037ca3d011081f8c46fc2.
         /// </summary>
         internal static string PENSOPAY_BTOKEN {
             get {

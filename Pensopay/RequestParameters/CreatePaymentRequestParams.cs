@@ -4,32 +4,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.WebRequestMethods;
 
 namespace Pensopay.RequestParameters
 {
     public class CreatePaymentRequestParams
     {
+        public int amount { get; set; }
+        public string currency { get; set; }    
         public string order_id { get; set; }
-        public string currency { get; set; }
-        public double amount { get; set; }
-        public string facilitator { get; set; } = "creditcard";
-        public bool testmode { get; set; }
-        public bool autocapture { get; set; }
-        public string callback_url { get; set; }
-        public string success_url { get; set; }
-        public string cancel_url { get; set; }
-        public Order? order { get; set; } = new();
-        public ShippingObj shipping { get; set; }
-        public Address billing_address { get; set; }
-        public Address shipping_address { get; set; }
-        public Variables variables { get; set; }
+        public Order order { get; set; } = new();
 
         public CreatePaymentRequestParams()
         {
-            
+      
         }
 
-        public CreatePaymentRequestParams(string currency, string order_id, double amount)
+        public CreatePaymentRequestParams(string currency, string order_id, int amount)
         {
             this.currency = currency;
             this.order_id = order_id;
