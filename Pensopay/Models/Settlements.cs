@@ -4,12 +4,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Pensopay.Models
 {
-    public class Payments
+    public class Settlements
     {
-        public List<Payment> data { get; set; }
+        public List<Settlement> data { get; set; }
         public PageParameters meta { get; set; }
     }
 }

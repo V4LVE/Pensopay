@@ -8,10 +8,10 @@ namespace Pensopay.Models.Util
 {
     public class Item
     {
-        public int qty { get; set; } = 0;
-        public string sku { get; set; } = "";
-        public int vat_rate { get; set; } = 0;
-        public string name { get; set; } = "";
-        public double price { get; set; } = 0;
+        public string name { get; set; }
+        public int price { get; set; }
+        public int qty { get; set; }
+        public string sku { get; set; }
+        public double vat_rate { get; set; }
     }
 }
