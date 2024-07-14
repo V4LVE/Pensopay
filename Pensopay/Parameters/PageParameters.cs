@@ -23,5 +23,7 @@ namespace Pensopay.Parameters
         public int per_page { get; set; }
 
         public int total { get; set; }
+        public DateTime from { get; set; }
+        public DateTime to { get; set; }
     }
 }
