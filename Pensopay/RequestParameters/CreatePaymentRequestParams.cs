@@ -14,6 +14,7 @@ namespace Pensopay.RequestParameters
         public string currency { get; set; }    
         public string order_id { get; set; }
         public Order order { get; set; } = new();
+        public bool testmode { get; set; } = false;
 
         public CreatePaymentRequestParams()
         {
