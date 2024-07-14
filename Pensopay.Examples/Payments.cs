@@ -20,7 +20,7 @@ namespace Pensopay.Examples
         /// Create a payment with a basket
         /// </summary>
         /// <returns></returns>
-        public static async Task CreatePaymentWithBasket()
+        public static async Task CreatePaymentWithBasket() // After v2 upgrade its no longer possible to create a payment without a basket
         {
             // First we need to create an address object, which we can use for the billing and shipping address.
             Address address = new() { name = "test", address = "test", city = "Copenhagen", country = "Denmark", email = "test@test.dk", mobile_number = "12345678", phone_number = "12345678", zipcode = "2300" };
@@ -70,6 +70,7 @@ namespace Pensopay.Examples
         public static async Task CancelPayent()
         {
             // We can now cancel the payment by calling the CancelPayment method on the paymentService instance. The request returns the cancelled payment.
+            // !!! REMEMBER only payments in state "authorized" can be cancelled !!!.
             Payment payment = await _paymentService.CancelPaymentAsync(12345678);
 
             Console.WriteLine(payment.state);
