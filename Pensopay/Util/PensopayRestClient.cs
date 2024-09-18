@@ -62,13 +62,13 @@ namespace Pensopay.Util
             request.AddParameter("sort_dir", sortingParameters.Value.SortDirection.ToString());
         }
 
-        protected async Task<T> CallEndpointAsync<T>(string endpointName, Action<RestRequest> preRequest = null) where T : new()
+        protected T CallEndpoint<T>(string endpointName, Action<RestRequest> preRequest = null) where T : new()
         {
             RestRequest request = CreateRequest(endpointName);
 
             preRequest?.Invoke(request);
 
-            RestResponse<T> response = await Client.ExecuteAsync<T>(request);
+            RestResponse<T> response = Client.Execute<T>(request);
 
             // Handle errors and throw exceptions if needed 
             if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
