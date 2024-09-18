@@ -19,7 +19,7 @@ namespace Pensopay.Services
         /// </summary>
         /// <param name="pageParameters"></param>
         /// <returns></returns>
-        public async Task<Settlements> GetSettlementsAsync(PageParameters? pageParameters = null)
+        public Settlements GetSettlements(PageParameters? pageParameters = null)
         {
 
             Action<RestRequest> preRequest = (request) =>
@@ -28,7 +28,7 @@ namespace Pensopay.Services
             };
 
 
-            return CallEndpointAsync<Settlements>("settlements", preRequest).Result;
+            return CallEndpoint<Settlements>("settlements", preRequest);
         }
 
         /// <summary>
@@ -36,9 +36,9 @@ namespace Pensopay.Services
         /// </summary>
         /// <param name="settlementId"></param>
         /// <returns></returns>
-        public async Task<Settlement> GeSettlementAsync(string settlementId)
+        public Settlement GeSettlement(string settlementId)
         {
-            return CallEndpointAsync<Settlement>($"settlements/{settlementId}").Result;
+            return CallEndpoint<Settlement>($"settlements/{settlementId}");
         }
     }
 }
