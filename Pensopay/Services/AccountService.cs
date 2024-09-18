@@ -21,9 +21,9 @@ namespace Pensopay.Services
         /// Get the account details from the API
         /// </summary>
         /// <returns>The requested account</returns>
-        public async Task<Account> GetAccountAsync()
+        public Account GetAccount()
         {
-            return CallEndpointAsync<Account>("account").Result;
+            return CallEndpoint<Account>("account");
         }
 
 
@@ -31,9 +31,9 @@ namespace Pensopay.Services
         /// Get the available methods from the API
         /// </summary>
         /// <returns>A list of strings for the given available methods</returns>
-        public async Task<Methods> GetMethodsAsync()
+        public Methods GetMethods()
         {
-            return CallEndpointAsync<Methods>("methods").Result;
+            return CallEndpoint<Methods>("methods");
         }
     }
 }

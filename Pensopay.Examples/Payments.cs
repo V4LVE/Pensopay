@@ -20,7 +20,7 @@ namespace Pensopay.Examples
         /// Create a payment with a basket
         /// </summary>
         /// <returns></returns>
-        public static async Task CreatePaymentWithBasket() // After v2 upgrade its no longer possible to create a payment without a basket
+        public static void CreatePaymentWithBasket() // After v2 upgrade its no longer possible to create a payment without a basket
         {
             // First we need to create an address object, which we can use for the billing and shipping address.
             Address address = new() { name = "test", address = "test", city = "Copenhagen", country = "Denmark", email = "test@test.dk", mobile_number = "12345678", phone_number = "12345678", zipcode = "2300" };
@@ -44,7 +44,7 @@ namespace Pensopay.Examples
                 testmode = true
             };
 
-            Payment payment = await _paymentService.CreatePaymentAsync(reqParams);
+            Payment payment = _paymentService.CreatePayment(reqParams);
 
             //We can now use the payment object to get the payment id, which we can use to capture, refund or cancel the payment. We can also use the payment object to get the payment url.
             Console.WriteLine(payment.link);
@@ -55,10 +55,10 @@ namespace Pensopay.Examples
         /// Capture a payment
         /// </summary>
         /// <returns></returns>
-        public static async Task CapturePayment()
+        public static void CapturePayment()
         {
             // We can now capture the payment by calling the CapturePayment method on the paymentService instance. The request returns the captured payment.
-            Payment payment = await _paymentService.CapturePaymentAsync(12345678, 1000);
+            Payment payment = _paymentService.CapturePayment(12345678, 1000);
 
             Console.WriteLine(payment.captured);
         }
@@ -67,11 +67,11 @@ namespace Pensopay.Examples
         /// Cancel a payment
         /// </summary>
         /// <returns></returns>
-        public static async Task CancelPayent()
+        public static void CancelPayent()
         {
             // We can now cancel the payment by calling the CancelPayment method on the paymentService instance. The request returns the cancelled payment.
             // !!! REMEMBER only payments in state "authorized" can be cancelled !!!.
-            Payment payment = await _paymentService.CancelPaymentAsync(12345678);
+            Payment payment = _paymentService.CancelPayment(12345678);
 
             Console.WriteLine(payment.state);
         }
@@ -79,10 +79,10 @@ namespace Pensopay.Examples
         /// <summary>
         /// Refund a payment
         /// </summary>
-        public static async Task RefundPayent()
+        public static void RefundPayent()
         {
             // We can now refund the payment by calling the RefundPayment method on the paymentService instance. The request returns the refunded payment.
-            Payment payment = await _paymentService.RefundPaymentAsync(12345678, 1000);
+            Payment payment = _paymentService.CapturePayment(12345678, 1000);
 
             Console.WriteLine(payment.refunded);
         }

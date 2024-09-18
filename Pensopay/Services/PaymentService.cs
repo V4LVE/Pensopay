@@ -19,7 +19,7 @@ namespace Pensopay.Services
         /// Retrieve all payments from the API
         /// </summary>
         /// <returns>a list of payments</returns>
-        public async Task<Payments> GetPaymentsAsync(PageParameters? pageParameters = null)
+        public Payments GetPayments(PageParameters? pageParameters = null)
         {
             Action<RestRequest> preRequest = (request) =>
             {
@@ -27,7 +27,7 @@ namespace Pensopay.Services
             };
 
 
-            return CallEndpointAsync<Payments>("payments", preRequest).Result;
+            return CallEndpoint<Payments>("payments", preRequest);
         }
 
         /// <summary>
@@ -35,7 +35,7 @@ namespace Pensopay.Services
         /// </summary>
         /// <param name="requestParams"></param>
         /// <returns>The created payment</returns>
-        public async Task<Payment> CreatePaymentAsync(CreatePaymentRequestParams requestParams)
+        public Payment CreatePayment(CreatePaymentRequestParams requestParams)
         {
             Action<RestRequest> preRequest = (request) =>
             {
@@ -43,7 +43,7 @@ namespace Pensopay.Services
                 request.AddJsonBody(requestParams);
             };
 
-            return CallEndpointAsync<Payment>("payments", preRequest).Result;
+            return CallEndpoint<Payment>("payments", preRequest);
         }
 
         /// <summary>
@@ -51,9 +51,9 @@ namespace Pensopay.Services
         /// </summary>
         /// <param name="paymentId"></param>
         /// <returns>The requested payment</returns>
-        public async Task<Payment> GetPaymentAsync(int paymentId)
+        public Payment GetPayment(int paymentId)
         {
-            return CallEndpointAsync<Payment>($"payments/{paymentId}").Result;
+            return CallEndpoint<Payment>($"payments/{paymentId}");
         }
 
         /// <summary>
@@ -62,7 +62,7 @@ namespace Pensopay.Services
         /// <param name="paymentId"></param>
         /// <param name="amount"></param>
         /// <returns>The captured payment</returns>
-        public async Task<Payment> CapturePaymentAsync(int paymentId, double? amount)
+        public Payment CapturePayment(int paymentId, double? amount)
         {
             Action<RestRequest> preRequest = (request) =>
             {
@@ -74,7 +74,7 @@ namespace Pensopay.Services
                 
             };
 
-            return CallEndpointAsync<Payment>($"payments/{paymentId}/capture", preRequest).Result;
+            return CallEndpoint<Payment>($"payments/{paymentId}/capture", preRequest);
         }
 
         /// <summary>
@@ -83,7 +83,7 @@ namespace Pensopay.Services
         /// <param name="paymentId"></param>
         /// <param name="amount"></param>
         /// <returns>The refunded payment</returns>
-        public async Task<Payment> RefundPaymentAsync(int paymentId, double? amount)
+        public Payment RefundPayment(int paymentId, double? amount)
         {
             Action<RestRequest> preRequest = (request) =>
             {
@@ -95,7 +95,7 @@ namespace Pensopay.Services
 
             };
 
-            return CallEndpointAsync<Payment>($"payments/{paymentId}/refund", preRequest).Result;
+            return CallEndpoint<Payment>($"payments/{paymentId}/refund", preRequest);
         }
 
         /// <summary>
@@ -103,14 +103,14 @@ namespace Pensopay.Services
         /// </summary>
         /// <param name="paymentId"></param>
         /// <returns>The Cancelled payment</returns>
-        public async Task<Payment> CancelPaymentAsync(int paymentId)
+        public Payment CancelPayment(int paymentId)
         {
             Action<RestRequest> preRequest = (request) =>
             {
                 request.Method = Method.Post;
             };
 
-            return CallEndpointAsync<Payment>($"payments/{paymentId}/cancel", preRequest).Result;
+            return CallEndpoint<Payment>($"payments/{paymentId}/cancel", preRequest);
         }
     }
 }

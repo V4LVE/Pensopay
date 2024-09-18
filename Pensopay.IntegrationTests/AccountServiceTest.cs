@@ -15,13 +15,12 @@ namespace Pensopay.IntegrationTests
         {
             //Arrange
             AccountService service = new(PensopayConfig.bearerToken);
-            var task = service.GetAccountAsync();
+            var task = service.GetAccount();
 
             //Act
-            var result = task.Result;
 
             //Assert
-            Assert.True(result != null);
+            Assert.True(task != null);
         }
 
         [Fact]
@@ -29,11 +28,10 @@ namespace Pensopay.IntegrationTests
         {
             //Arrange
             AccountService service = new(PensopayConfig.bearerToken);
-            var task = service.GetMethodsAsync();
+            var task = service.GetMethods();
             //Act
-            var result = task.Result;
             //Assert
-            Assert.True(result != null);
+            Assert.True(task != null);
         }
     }
 }

@@ -20,7 +20,7 @@ namespace Pensopay.Examples
         private static readonly SettlementService _settleMentService = new SettlementService("<<BearerToken>>");
 
         // Get a list of all settlements
-        public async void GetAllSettlements()
+        public void GetAllSettlements()
         {
             var pageParams = new PageParameters() // Paging for sorting
             {
@@ -28,13 +28,13 @@ namespace Pensopay.Examples
                 per_page = 10
             };
 
-            Settlements settlements = await _settleMentService.GetSettlementsAsync(pageParams); // Returns a list of settlements inside the object settlements
+            Settlements settlements = _settleMentService.GetSettlements(pageParams); // Returns a list of settlements inside the object settlements
         }
 
         // Get a specific settlement
-        public async void GetSettlement()
+        public void GetSettlement()
         {
-            Settlement settlement = await _settleMentService.GeSettlementAsync("2f29196a-673b-5ff6-a1a4-6853a5bd9cda"); // Get he settlement with the given ID
+            Settlement settlement = _settleMentService.GeSettlement("2f29196a-673b-5ff6-a1a4-6853a5bd9cda"); // Get he settlement with the given ID
 
             // You can now access the settlement object and get the underlaying information you need
             Console.WriteLine(settlement.id);
