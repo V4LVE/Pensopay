@@ -23,13 +23,12 @@ namespace Pensopay.IntegrationTests
                 per_page = 10
             };
 
-            var task = service.GetSettlementsAsync(pageParams);
+            var task = service.GetSettlements(pageParams);
 
             //Act
-            var result = task.Result;
 
             //Assert
-            Assert.True(result != null);
+            Assert.True(task != null);
         }
 
         [Fact]
@@ -37,13 +36,12 @@ namespace Pensopay.IntegrationTests
         {
             //Arrange
             SettlementService service = new(PensopayConfig.bearerToken);
-            var task = service.GeSettlementAsync("2f29196a-673b-5ff6-a1a4-6853a5bd9cda");
+            var task = service.GeSettlement("2f29196a-673b-5ff6-a1a4-6853a5bd9cda");
 
             //Act
-            var result = task.Result;
 
             //Assert
-            Assert.True(result != null);
+            Assert.True(task != null);
         }
     }
 }
