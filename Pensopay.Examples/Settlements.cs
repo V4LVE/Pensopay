@@ -1,4 +1,4 @@
-﻿using Pensopay.Models;
+﻿using Pensopay.Models.Settlements;
 using Pensopay.Parameters;
 using Pensopay.Services;
 using System;
