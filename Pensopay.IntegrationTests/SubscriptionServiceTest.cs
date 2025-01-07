@@ -1,4 +1,5 @@
 ﻿using Pensopay.IntegrationTests.Util;
+using Pensopay.Parameters;
 using Pensopay.Services;
 
 namespace Pensopay.IntegrationTests
@@ -16,6 +17,25 @@ namespace Pensopay.IntegrationTests
 
             //Assert
             Assert.True(sub != null);
+        }
+
+        [Fact]
+        public void GetSubsWithPaging()
+        {
+            //Arrange
+            SubscriptionService service = new(PensopayConfig.bearerToken);
+            var pageParams = new PageParameters()
+            {
+                page = 1,
+                per_page = 1
+            };
+
+            var payments = service.GetAllSubscriptions(pageParams);
+
+            //Act
+
+            //Assert
+            Assert.True(payments.data.Count == pageParams.per_page);
         }
     }
 }
