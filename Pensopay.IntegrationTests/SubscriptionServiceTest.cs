@@ -1,4 +1,5 @@
 ﻿using Pensopay.IntegrationTests.Util;
+using Pensopay.Models.Util;
 using Pensopay.Parameters;
 using Pensopay.RequestParameters.Subscriptions;
 using Pensopay.RequestParameters.Subscriptions.Mandates;
@@ -13,7 +14,7 @@ namespace Pensopay.IntegrationTests
         {
             //Arrange
             SubscriptionService service = new(PensopayConfig.bearerToken);
-            var sub = service.GetSubscription(1000098);
+            var sub = service.GetSubscription(1009600);
 
             //Act
 
@@ -114,7 +115,7 @@ namespace Pensopay.IntegrationTests
         {
             //Arrange
             SubscriptionService service = new(PensopayConfig.bearerToken);
-            var task = service.MandateService.GetMandate(1000098, 1009545);
+            var task = service.MandateService.GetMandate(1000098, 1009549);
             //Assert
             Assert.True(task != null);
         }
@@ -128,10 +129,10 @@ namespace Pensopay.IntegrationTests
             var pageParams = new PageParameters()
             {
                 page = 1,
-                per_page = 1
+                per_page = 5
             };
 
-            var task = service.MandateService.GetMandates(1000098, pageParams);
+            var task = service.MandateService.GetMandates(1009600, pageParams);
             //Assert
             Assert.True(task != null);
         }
@@ -142,6 +143,43 @@ namespace Pensopay.IntegrationTests
             //Arrange
             SubscriptionService service = new(PensopayConfig.bearerToken);
             var task = service.MandateService.RevokeMandate(1000098, 1009545);
+            //Assert
+            Assert.True(task != null);
+
+        }
+
+        [Fact]
+        public void CreateSubPayment()
+        {
+            //Arrange
+            SubscriptionService service = new(PensopayConfig.bearerToken);
+            string randomOrderId = OrderIDGenerator.GenerateRandomId();
+
+            Address address = new() { name = "test", address = "test", city = "Copenhagen", country = "Denmark", email = "test@test.dk", mobile_number = "12345678", phone_number = "12345678", zipcode = "2300" };
+
+            Order order = new()
+            {
+                billing_address = address,
+                shipping_address = address,
+                Basket = new() { new Item() { qty = 1, sku = "123test", name = "Basic Subscription", price = 3900, vat_rate = 25 } }
+            };
+
+
+            var reqParams = new CreatePaymentSubscriptionRequestParams()
+            {
+                currency = "DKK",
+                order_id = randomOrderId,
+                amount = 1000,
+                text_on_statement = "Test Subscription",
+                order = order,
+                testmode = true,
+                mandate_id = 1009539
+            };
+
+            var task = service.CreatePayment(reqParams, 1009600);
+
+            //Act
+
             //Assert
             Assert.True(task != null);
 

@@ -86,5 +86,22 @@ namespace Pensopay.Services.Subscriptions
             };
             return CallEndpoint<Subscription>($"subscriptions/{subscriptionId}/cancel", preRequest);
         }
+
+        /// <summary>
+        /// Create a new payment for the subscription with a mandate
+        /// </summary>
+        /// <param name="requestParams"></param>
+        /// <param name="subscriptionId"></param>
+        /// <returns>The created subpayment</returns>
+        public SubPayment CreatePayment(CreatePaymentSubscriptionRequestParams requestParams, int subscriptionId)
+        {
+            Action<RestRequest> preRequest = (request) =>
+            {
+                request.Method = Method.Post;
+                request.AddJsonBody(requestParams);
+            };
+
+            return CallEndpoint<SubPayment>($"subscriptions/{subscriptionId}/payments", preRequest);
+        }
     }
 }
