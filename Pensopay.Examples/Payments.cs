@@ -1,5 +1,4 @@
-﻿using Pensopay.Models;
-using Pensopay.Models.Util;
+﻿using Pensopay.Models.Util;
 using Pensopay.RequestParameters;
 using Pensopay.Services;
 using System.Diagnostics;

@@ -1,11 +1,6 @@
 ﻿using Pensopay.Parameters;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Pensopay.Models
+namespace Pensopay.Models.Payments
 {
     public class Payments
     {
