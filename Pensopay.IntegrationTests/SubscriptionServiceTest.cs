@@ -1,7 +1,8 @@
 ﻿using Pensopay.IntegrationTests.Util;
 using Pensopay.Parameters;
 using Pensopay.RequestParameters.Subscriptions;
-using Pensopay.Services;
+using Pensopay.RequestParameters.Subscriptions.Mandates;
+using Pensopay.Services.Subscriptions;
 
 namespace Pensopay.IntegrationTests
 {
@@ -91,6 +92,59 @@ namespace Pensopay.IntegrationTests
             var task = service.CancelSubscription(1000098);
             //Assert
             Assert.True(task != null);
+        }
+
+        [Fact]
+        public void CreateMandate()
+        {
+            //Arrange
+            SubscriptionService service = new(PensopayConfig.bearerToken);
+            var reqParams = new CreateMandateRequestParams()
+            {
+                reference = "mandate-1",
+            };
+
+            var task = service.MandateService.CreateMandate(reqParams, 1000098);
+
+            Assert.True(task != null);
+        }
+
+        [Fact]
+        public void GetMandate()
+        {
+            //Arrange
+            SubscriptionService service = new(PensopayConfig.bearerToken);
+            var task = service.MandateService.GetMandate(1000098, 1009545);
+            //Assert
+            Assert.True(task != null);
+        }
+
+        [Fact]
+        public void GetMandates()
+        {
+            //Arrange
+            SubscriptionService service = new(PensopayConfig.bearerToken);
+
+            var pageParams = new PageParameters()
+            {
+                page = 1,
+                per_page = 1
+            };
+
+            var task = service.MandateService.GetMandates(1000098, pageParams);
+            //Assert
+            Assert.True(task != null);
+        }
+
+        [Fact]
+        public void CancelMandate()
+        {
+            //Arrange
+            SubscriptionService service = new(PensopayConfig.bearerToken);
+            var task = service.MandateService.RevokeMandate(1000098, 1009545);
+            //Assert
+            Assert.True(task != null);
+
         }
     }
 }

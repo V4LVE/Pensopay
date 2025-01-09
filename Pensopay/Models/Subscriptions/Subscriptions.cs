@@ -2,7 +2,7 @@
 
 namespace Pensopay.Models.Subscriptions
 {
-    public class Subscriptions
+    public class SubscriptionsVm
     {
         public List<Subscription> data { get; set; }
         public PageParameters meta { get; set; }

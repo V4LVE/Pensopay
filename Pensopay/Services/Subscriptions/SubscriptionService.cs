@@ -4,11 +4,16 @@ using Pensopay.RequestParameters.Subscriptions;
 using Pensopay.Util;
 using RestSharp;
 
-namespace Pensopay.Services
+namespace Pensopay.Services.Subscriptions
 {
     public class SubscriptionService : PensopayRestClient
     {
-        public SubscriptionService(string bearerToken) : base(bearerToken) { }
+        public MandateService MandateService { get; }
+
+        public SubscriptionService(string bearerToken) : base(bearerToken)
+        {
+            MandateService = new MandateService(bearerToken);
+        }
 
         /// <summary>
         /// Retrieve a subscription from the API
@@ -25,7 +30,7 @@ namespace Pensopay.Services
         /// </summary>
         /// <param name="pageParameters"></param>
         /// <returns>A list of all subscriptions with paging</returns>
-        public Subscriptions GetAllSubscriptions(PageParameters? pageParameters = null)
+        public SubscriptionsVm GetAllSubscriptions(PageParameters? pageParameters = null)
         {
             Action<RestRequest> preRequest = (request) =>
             {
@@ -33,7 +38,7 @@ namespace Pensopay.Services
             };
 
 
-            return CallEndpoint<Subscriptions>("subscriptions", preRequest);
+            return CallEndpoint<SubscriptionsVm>("subscriptions", preRequest);
         }
 
         /// <summary>
