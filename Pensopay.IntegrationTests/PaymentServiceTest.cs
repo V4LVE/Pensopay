@@ -1,13 +1,8 @@
-
-using Pensopay.IntegrationTests.Properties;
 using Pensopay.IntegrationTests.Util;
 using Pensopay.Models.Util;
 using Pensopay.Parameters;
-using Pensopay.RequestParameters;
+using Pensopay.RequestParameters.Payments;
 using Pensopay.Services;
-using RestSharp;
-using System.Reflection;
-using System.Text.Json.Serialization;
 
 namespace Pensopay.IntegrationTests
 {
@@ -18,7 +13,7 @@ namespace Pensopay.IntegrationTests
         {
             //Arrange
             PaymentService service = new(PensopayConfig.bearerToken);
-            var payment =  service.GetPayment(14572581);
+            var payment = service.GetPayment(14572581);
 
             //Act
 
@@ -71,7 +66,7 @@ namespace Pensopay.IntegrationTests
             {
                 billing_address = address,
                 shipping_address = address,
-                Basket = new() { new Item() {qty = 2, sku = "123test", name = "The Elder Wand", price = 10000, vat_rate = 25 } }
+                Basket = new() { new Item() { qty = 2, sku = "123test", name = "The Elder Wand", price = 10000, vat_rate = 25 } }
             };
 
 
@@ -121,7 +116,7 @@ namespace Pensopay.IntegrationTests
         [Fact]
         public void RefundPayent()
         {
-             //Arrange
+            //Arrange
             PaymentService service = new(PensopayConfig.bearerToken);
             var task = service.RefundPayment(14573073, 1000);
 

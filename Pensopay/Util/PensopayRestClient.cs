@@ -1,13 +1,5 @@
-﻿using Pensopay.Models;
-using Pensopay.Parameters;
+﻿using Pensopay.Parameters;
 using RestSharp;
-using RestSharp.Authenticators;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Pensopay.Util
 {
@@ -46,8 +38,8 @@ namespace Pensopay.Util
             if (pageParameters == null)
                 return;
             request.AddParameter("page", pageParameters.Value.page);
-            request.AddParameter ("per_page", pageParameters.Value.per_page);
-            request.AddParameter ("total", pageParameters.Value.total);
+            request.AddParameter("per_page", pageParameters.Value.per_page);
+            request.AddParameter("total", pageParameters.Value.total);
         }
 
         protected void AddSortingParameters(Nullable<SortingParameters> sortingParameters, RestRequest request)
@@ -81,7 +73,7 @@ namespace Pensopay.Util
             }
             if (response.ErrorException != null)
             {
-                throw response.ErrorException;
+                throw new Exception(response.Content, response.ErrorException)!;
             }
 
 

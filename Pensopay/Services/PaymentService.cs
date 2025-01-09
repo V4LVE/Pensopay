@@ -1,6 +1,6 @@
-﻿using Pensopay.Models;
+﻿using Pensopay.Models.Payments;
 using Pensopay.Parameters;
-using Pensopay.RequestParameters;
+using Pensopay.RequestParameters.Payments;
 using Pensopay.Util;
 using RestSharp;
 using System;

@@ -1,17 +1,11 @@
 ﻿using Pensopay.Models.Util;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Net.WebRequestMethods;
 
-namespace Pensopay.RequestParameters
+namespace Pensopay.RequestParameters.Payments
 {
     public class CreatePaymentRequestParams
     {
         public int amount { get; set; }
-        public string currency { get; set; }    
+        public string currency { get; set; }
         public string order_id { get; set; }
         public Order order { get; set; } = new();
         public bool testmode { get; set; } = false;
@@ -21,7 +15,7 @@ namespace Pensopay.RequestParameters
 
         public CreatePaymentRequestParams()
         {
-      
+
         }
 
         public CreatePaymentRequestParams(string currency, string order_id, int amount)
