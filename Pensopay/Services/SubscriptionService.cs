@@ -1,5 +1,6 @@
 ﻿using Pensopay.Models.Subscriptions;
 using Pensopay.Parameters;
+using Pensopay.RequestParameters.Subscriptions;
 using Pensopay.Util;
 using RestSharp;
 
@@ -33,6 +34,52 @@ namespace Pensopay.Services
 
 
             return CallEndpoint<Subscriptions>("subscriptions", preRequest);
+        }
+
+        /// <summary>
+        /// Create a new subscription towards the API
+        /// </summary>
+        /// <param name="requestParams"></param>
+        /// <returns>the newly created subscription</returns>
+        public Subscription CreateSubscription(CreateSubscriptionRequestParams requestParams)
+        {
+            Action<RestRequest> preRequest = (request) =>
+            {
+                request.Method = Method.Post;
+                request.AddJsonBody(requestParams);
+            };
+
+            return CallEndpoint<Subscription>("subscriptions", preRequest);
+        }
+
+        /// <summary>
+        /// Update a subscription towards the API
+        /// </summary>
+        /// <param name="subscriptionId"></param>
+        /// <param name="updateParams"></param>
+        /// <returns>the newly updated subscription</returns>
+        public Subscription UpdateSubscription(int subscriptionId, UpdateSubscriptionRequestParams updateParams)
+        {
+            Action<RestRequest> preRequest = (request) =>
+            {
+                request.Method = Method.Patch;
+                request.AddJsonBody(updateParams);
+            };
+            return CallEndpoint<Subscription>($"subscriptions/{subscriptionId}", preRequest);
+        }
+
+        /// <summary>
+        /// Cancel a subscription towards the API
+        /// </summary>
+        /// <param name="subscriptionId"></param>
+        /// <returns>The cancelled subscription</returns>
+        public Subscription CancelSubscription(int subscriptionId)
+        {
+            Action<RestRequest> preRequest = (request) =>
+            {
+                request.Method = Method.Post;
+            };
+            return CallEndpoint<Subscription>($"subscriptions/{subscriptionId}/cancel", preRequest);
         }
     }
 }
