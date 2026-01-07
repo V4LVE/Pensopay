@@ -4,6 +4,7 @@ using Pensopay.Parameters;
 using Pensopay.RequestParameters.Subscriptions;
 using Pensopay.RequestParameters.Subscriptions.Mandates;
 using Pensopay.Services.Subscriptions;
+using Assert = Xunit.Assert;
 
 namespace Pensopay.IntegrationTests
 {
