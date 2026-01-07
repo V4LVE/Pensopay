@@ -3,6 +3,7 @@ using Pensopay.Models.Util;
 using Pensopay.Parameters;
 using Pensopay.RequestParameters.Payments;
 using Pensopay.Services;
+using Assert = Xunit.Assert;
 
 namespace Pensopay.IntegrationTests
 {
